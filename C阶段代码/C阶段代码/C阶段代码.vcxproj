@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClCompile Include="C:\Users\戴尔\Documents\Visual Studio 2013\Projects\c\c\代码储存.c" />
     <ClCompile Include="C:\Users\戴尔\Documents\Visual Studio 2013\Projects\c\c\电子.c" />
+    <ClCompile Include="电子1.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
