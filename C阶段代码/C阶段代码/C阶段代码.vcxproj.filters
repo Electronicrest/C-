@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\戴尔\Documents\Visual Studio 2013\Projects\c\c\电子.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="C:\Users\戴尔\Documents\Visual Studio 2013\Projects\c\c\代码储存.c">
       <Filter>源文件</Filter>
     </ClCompile>
