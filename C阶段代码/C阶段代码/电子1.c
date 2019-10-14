@@ -1,69 +1,43 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+//二分查找有序数组
+//写代码可以在整型有序数组中查找想要的数字，
+//找到了返回下标，找不到返回 - 1.（折半查找）
 #include<stdio.h>
-#include<stdlib.h>//里面包含rand函数,system函数
-#include<time.h>
-void Game(void);//声明Game函数,告诉编译器存在着这样一个函数返回值为空,没有参数
-void menu(void)//打印菜单,调用Game函数
-{
-	printf("---------------------------------\n");
-	printf("---------------------------------\n");
-	printf("温馨提示,我们的游戏是猜字谜游戏,猜1-100之间的整数\n");
-	printf("            开始游戏     1       \n");
-	printf("            结束游戏     0       \n");
-	printf("---------------------------------\n");
-	printf("---------------------------------\n");
-		int num;
-	printf("          请输入您的选择     ");
-	printf("\n");
-	scanf_s("%d", &num);//获取用户输入选择
-	if (num == 1)
-	{
-		 Game();
-	}
-	else
-		printf("您选择了退出,再见!\n");
+#include<stdlib.h>
 
-}
-void Game(void)//设置游戏内容
+void FindNum(int arr[],int n)//arr[]定义一个要传入的数组参数,n定义要找的数字
 {
+	int left = 0;//数组左边界下标
+	int right = sizeof(arr) - 1;//求出数组内元素的数量-1就是数组右边界下标
 	
-	
-	int num = rand()% 100 + 1;//设置随机数的范围是1-100
-	int user;
-	printf("下面我们开始猜字谜游戏吧!	ready  go !\n ");
-	printf("请输入您猜的1-100内的整数\n");
-	while (1)
+	while (left<=right)//当left>right时说明整个数组都遍历了一遍,但还是没找见要找的数字
 	{
-		scanf_s("%d", &user);
-		if (user > num)
-			printf("您猜的大了呢\n");
-		else if (user < num)
-			printf("您猜的小了呢\n");
-		else if (user == num)
+		int mid = (left + right) / 2;//定义数组下标的中心位置
+		if (arr[mid] < n)//要找的数字大于中心的数字
 		{
-			printf("恭喜你,猜对了,智商堪比牛顿,鼓掌!\n");
-			break;
+			left = mid+1;//将之前找的中心下标-1赋给左边界    
+		}				//  -1或+1 目的是  1.arr[mid]已经和n比出大小了,所以arr[mid]这个值
+		else if (arr[mid]>n)   //  已经不等于n了,可以筛过了
+		{						//         2. 防止最后一个数遍历不到	
+			right = mid-1;
+		}
+		else if (arr[mid] == n)
+		{
+			printf("恭喜你找到了,下标为 %d\n", mid);
+			break;  // 避免已经找到了,但还在遍历数组剩余元素与之相对比,直到left>right才退出
 		}
 	}
-	printf("你太棒了!!!\n");
+	if (left > right)
+	{
+		printf("-1\n");
+	}
 }
 int main()
 { 
-	srand((unsigned int)time(NULL));//随机数生成器,使程序每打开一次,随机数就会发生变化
-	 menu();//调用menu函数,注意函数调用的格式
+	int arr[] = { 1, 2, 3, 4, 5 };
+	FindNum(arr, 4);
 	system("pause");
 	return 0;
 }
